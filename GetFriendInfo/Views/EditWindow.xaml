@@ -1,0 +1,66 @@
+﻿<Window x:Class="GetFriendInfo.Views.EditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:Interactivity="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.NET45" 
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GetFriendInfo.Views"
+        xmlns:v="clr-namespace:GetFriendInfo.Views" 
+        xmlns:vm="clr-namespace:GetFriendInfo.ViewModels" 
+        mc:Ignorable="d"
+        Title="EditWindow" Height="135" Width="240">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+        </i:EventTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <i:EventTrigger EventName="Closed">
+            <l:DataContextDisposeAction/>
+        </i:EventTrigger>
+
+        <l:InteractionMessageTrigger Messenger="{Binding Messenger}" MessageKey="ChoiceMemberWindowOpen">
+            <l:TransitionInteractionMessageAction
+                WindowType="{x:Type v:ChoiceMemberWindow}" Mode="Modal" />
+        </l:InteractionMessageTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="社員番号" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox
+            TextWrapping="Wrap" Text="{Binding EditTarget.Number, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding (Validation.Errors)/ErrorContent, RelativeSource={RelativeSource Self}}"
+            Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <Interactivity:EventToReactiveCommand Command="{Binding GetMembers, Mode=OneWay}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Label Content="名前" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+        <TextBox
+            TextWrapping="Wrap" Text="{Binding EditTarget.Name, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding (Validation.Errors)/ErrorContent, RelativeSource={RelativeSource Self}}"
+            Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="LostFocus">
+                    <Interactivity:EventToReactiveCommand Command="{Binding GetMembers, Mode=OneWay}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBox>
+        <Button Content="追加" Command="{Binding AddCommand}" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Right" />
+    </Grid>
+</Window>

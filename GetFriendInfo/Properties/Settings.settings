@@ -1,0 +1,44 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GetFriendInfo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BoardServerURI" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://www2.kh.xxx.co.jp</Value>
+    </Setting>
+    <Setting Name="HtmlHeader" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;偽ボード&lt;/title&gt;
+&lt;link rel="stylesheet" type="text/css" href="http://www2.kh.xxx.co.jp/styles/wb2.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;table&gt;</Value>
+    </Setting>
+    <Setting Name="HtmlFooter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/table&gt;
+&lt;br&gt;
+&lt;table width="100%" align="right" border="0" cellspacing="0" cellpadding="0"&gt;
+&lt;tr&gt;&lt;td class="shubetsu" nowrap&gt;
+&lt;table border="0" cellspacing="0" cellpadding="1"&gt;
+&lt;tr valign="middle" align="left"&gt;
+&lt;td class="shubetsu" nowrap&gt;&amp;nbsp;情報種別&lt;/td&gt;
+&lt;td class="shubetsu" rowspan="3" nowrap&gt;&amp;nbsp;&lt;/td&gt;
+&lt;td class="shubetsu" nowrap&gt;社外秘&lt;/td&gt;&lt;/tr&gt;
+&lt;tr valign="middle" align="left"&gt;
+&lt;td class="shubetsu" nowrap&gt;&amp;nbsp;会社名&lt;/td&gt;
+&lt;td class="shubetsu" nowrap&gt;○○○○○○株式会社&lt;/td&gt;&lt;/tr&gt;
+&lt;tr valign="middle" align="left"&gt;
+&lt;td class="shubetsu" nowrap&gt;&amp;nbsp;情報所有者&lt;/td&gt;
+&lt;td class="shubetsu" nowrap&gt;情報システム部&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;</Value>
+    </Setting>
+    <Setting Name="DatabaseFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">board.sqlite3</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

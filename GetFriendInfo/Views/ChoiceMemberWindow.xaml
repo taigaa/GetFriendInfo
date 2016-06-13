@@ -1,0 +1,42 @@
+﻿<Window x:Class="GetFriendInfo.Views.ChoiceMemberWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:Interactivity="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.NET45" 
+        xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GetFriendInfo.Views"
+        mc:Ignorable="d"
+        Title="ChoiceMemberWindow" Height="300" Width="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="ContentRendered">
+            <l:LivetCallMethodAction MethodTarget="{Binding}" MethodName="Initialize"/>
+        </i:EventTrigger>
+
+        <l:InteractionMessageTrigger MessageKey="Close" Messenger="{Binding Messenger}">
+            <l:WindowInteractionMessageAction InvokeActionOnlyWhenWindowIsActive="False" />
+        </l:InteractionMessageTrigger>
+
+        <i:EventTrigger EventName="Closed">
+            <l:DataContextDisposeAction/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Label Content="リストの行を選択して設定ボタンを押してください" Grid.Row="0" />
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Members}" IsReadOnly="True" SelectionMode="Single" SelectedItem="{Binding SelectedMember.Value}" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Number}" Header="社員番号"/>
+                <DataGridTextColumn Binding="{Binding Board}" Header="ボード番号"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="名前"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="設定" Command="{Binding SetCommand}" Grid.Row="2" HorizontalAlignment="Right" />
+    </Grid>
+</Window>
